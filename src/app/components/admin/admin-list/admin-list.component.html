@@ -1,0 +1,50 @@
+<h1 class="ms-5 mt-4 fs-2">Bienvenue sur l'accès d'administration</h1>
+<button (click)="logout()" class="btn btn-dark">Me déconnecter</button>
+
+
+<div *ngIf="isLoading" class="spinner-border" role="status">
+</div>
+<div class="container" *ngIf="voyages">
+  <div class="row">
+    <div class="col-md-12">
+
+      <div class="d-flex mt-5">
+        <h1 class="fs-3">Liste de tous les voyages</h1>
+        <a [routerLink]="['/admin/ajout']" class="btn btn-outline-dark ms-4 "><i class="fa-solid fa-plus"></i>
+        </a>
+      </div>
+
+      <table class="table mt-5" *ngIf="!isLoading">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Destination</th>
+            <th scope="col">Latitude</th>
+            <th scope="col">Longitude</th>
+            <th scope="col">Type</th>
+            <th scope="col">Image principale</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let voyage of voyages">
+            <th scope="row">{{ voyage?.id }}</th>
+            <td>{{ voyage?.destination }}</td>
+            <td>{{ voyage?.lattitude }}</td>
+            <td>{{ voyage?.longitude }}</td>
+            <td>{{ voyage?.type }}</td>
+            <td><img src="{{ voyage?.mainPicture?.src }}" alt="{{ voyage?.mainPicture?.alt }}"></td>
+            <td>
+              <a (click)="deleteEvent(voyage.id)" class="me-4"><button><i class="fa-solid fa-trash-can"
+                    style="color: #e8172c;"></i></button></a>
+
+              <a [routerLink]="['/admin/edit', voyage.id]">
+                <i class="fa-solid fa-pen-to-square" style="color: #63E6BE;"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

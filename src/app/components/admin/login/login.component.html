@@ -1,0 +1,78 @@
+<section>
+  <div>
+
+
+    <div *ngIf="isLoading" class="spinner-border" role="status">
+    </div>
+    <div class="container py-5 " style="background-color: rgba(255, 235, 205);">
+      <h1 class="fs-2">Formulaire de connexion</h1>
+      <a [routerLink]="['/']" class="text-black mb-5">Retourner sur l'application publique</a>
+      <div class="row d-flex justify-content-center align-items-center mt-5">
+        <div class="col col-md-12">
+          <div class="card" style="border-radius: 1rem;">
+            <div class="row g-0">
+              <div class="col-md-9 d-none d-md-block">
+                <img src="https://www.acs-ami.com/fr/blog/wp-content/uploads/2015/07/inspiration-voyage.jpg"
+                  alt="login form" class="" style="border-radius: 1rem 0 0 1rem;" />
+              </div>
+              <div class="col-md-3  d-flex align-items-center">
+                <div class="card-body  text-black">
+                  <div *ngIf="!isLoading">
+                    <form (submit)="loggedUser()" #loginForm="ngForm">
+
+
+                      <h1 class="fw-normal mb-3 pb-3 fs-1">Se connecter </h1>
+
+
+                      <div class="form-row">
+                        <div class="col-md-8 mb-3">
+                          <label for="username">Nom d'utilisateur</label>
+                          <input type="text" #username="ngModel" [(ngModel)]="user.username" required
+                            class="form-control" [class.is-valid]="username.valid" [class.is-invalid]="!username.valid"
+                            id="username" name="username" placeholder="Nom d'utilisateur">
+                          <div *ngIf="username.valid" class="valid-feedback">
+                            Nom d'utilisateur valide
+                          </div>
+
+                          <div *ngIf="!username.valid" class="invalid-feedback">
+                            Veuillez saisir un nom d'utilisateur
+                          </div>
+                        </div>
+                        <div class="form-row">
+                          <div class="col-md-8 mb-3">
+                            <label for="password">mot de passe</label>
+                            <input type="password" name="password" #passwordInput="ngModel" [(ngModel)]="user.password"
+                              [class.is-valid]="passwordInput.valid" [class.is-invalid]="!passwordInput.valid"
+                              class="form-control" id="password" placeholder="Mot de passe" required>
+
+                            <div class="valid-feedback" *ngIf="passwordInput.valid">
+                              Mot de passe valide
+                            </div>
+                            <div *ngIf="!passwordInput.valid" class="invalid-feedback">
+                              Veuillez saisir un mot de passe
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div *ngIf="strError" class="text-danger">
+                        {{ strError }}
+                      </div>
+                      <div class="pt-1 mb-4">
+                        <button class="btn btn-dark btn-lg btn-block" [disabled]="!loginForm.valid" type="submit">Se
+                          connecter</button>
+                      </div>
+
+
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</section>

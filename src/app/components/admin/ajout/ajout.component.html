@@ -1,0 +1,110 @@
+<div>
+  <h1>Ajouter un nouveau véhicule</h1>
+  <a [routerLink]="['/admin']" class="text-black mb-5">Retour</a>
+</div>
+<div *ngIf="isLoading" class="spinner-border" role="status">
+</div>
+
+
+<form *ngIf="!isLoading" (submit)="ajoutVoyage()" #formVoyage="ngForm">
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="destination">Destination</label>
+      <input type="text" #destination="ngModel" [(ngModel)]="voys.destination" required class="form-control"
+        [class.is-valid]="destination.valid" [class.is-invalid]="!destination.valid" id="destination" name="destination"
+        placeholder="destination">
+      <div *ngIf="destination.valid" class="valid-feedback">
+        Saisi valide
+      </div>
+
+      <div *ngIf="!destination.valid" class="invalid-feedback">
+        Veuillez saisir la destination
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="lattitude">Lattitude</label>
+      <input type="number" #lattitude="ngModel" [(ngModel)]="voys.lattitude" required class="form-control"
+        [class.is-valid]="lattitude.valid" [class.is-invalid]="!lattitude.valid" id="lattitude" name="lattitude"
+        step="1" placeholder="lattitude">
+      <div *ngIf="lattitude.valid" class="valid-feedback">
+        Saisi valide
+      </div>
+
+      <div *ngIf="!lattitude.valid" class="invalid-feedback">
+        Veuillez saisir la lattitude
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="longitude">Longitude</label>
+      <input type="number" #longitude="ngModel" [(ngModel)]="voys.longitude" required class="form-control"
+        [class.is-valid]="longitude.valid" [class.is-invalid]="!longitude.valid" id="longitude" name="longitude"
+        step="1" placeholder="longitude">
+      <div *ngIf="longitude.valid" class="valid-feedback">
+        Saisi valide
+      </div>
+
+      <div *ngIf="!lattitude.valid" class="invalid-feedback">
+        Veuillez saisir la longitude
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="nbStar">Nombre d'étoile</label>
+      <input type="number" #nbStar="ngModel" [(ngModel)]="voys.nbStar" required class="form-control"
+        [class.is-valid]="nbStar.valid" [class.is-invalid]="!nbStar.valid" id="nbStar" name="nbStar" step="1"
+        placeholder="nbStar">
+      <div *ngIf="nbStar.valid" class="valid-feedback">
+        Saisi valide
+      </div>
+
+      <div *ngIf="!nbStar.valid" class="invalid-feedback">
+        Veuillez saisir le nombre d'étoile
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="mainPicture">Photo Principale</label>
+      <input type="text" #mainPicture="ngModel" [(ngModel)]="voys.mainPicture" class="form-control"
+        [class.is-valid]="mainPicture.valid" [class.is-invalid]="!mainPicture.valid" id="mainPicture" name="mainPicture"
+        placeholder="Image Principale du voyage">
+      <div *ngIf="mainPicture.valid" class="valid-feedback">
+        Saisi valide
+      </div>
+
+      <div *ngIf="!mainPicture.valid" class="invalid-feedback">
+        Veuillez saisir une photo
+      </div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="username">Types de destination</label>
+      <select required [(ngModel)]="voys.type" #marqueSelect="ngModel" [class.is-valid]="voys.type"
+        [class.is-invalid]="!voys.type || voys.type == 'null'" name="type" class="form-select"
+        aria-label="Default select example">
+        <option selected [value]="null">Selectionnez une marque</option>
+        <option *ngFor="let type of types" [value]="type">{{ type }}</option>
+      </select>
+    </div>
+  </div>
+
+
+
+  <button [disabled]="!formVoyage.valid" type="submit" class="btn btn-success">Valider</button>
+</form>

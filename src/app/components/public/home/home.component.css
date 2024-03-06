@@ -1,0 +1,21 @@
+.bg {
+  background-image: url('https://www.interhome.fr/upload/travelguide/5449/plage-costa-daurada-salou-hero-teaser.jpg');
+}
+
+.border {
+  background-color: antiquewhite;
+  border-color: blanchedalmond;
+}
+
+img {
+  width: 31vw;
+  height: 28vh;
+}
+
+.card {
+  width: fit-content;
+}
+
+h1 {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}

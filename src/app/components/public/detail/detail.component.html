@@ -1,0 +1,62 @@
+<body style="background-image: '{{voyage?.mainPicture?.src}} '">
+
+  <section class="m-5 detail">
+    <h1 class="fs-1 fw-bolder">Détail sur {{ voyage?.destination }} </h1>
+    <div *ngIf="isLoading" class="spinner-border" role="status">
+
+    </div>
+
+    <a [routerLink]="['']" class="fst-italic text-black">Retour</a>
+
+    <div *ngIf="!isLoading">
+
+
+      <div>
+        <div id="carouselExample" class="carousel slide">
+          <div class="carousel-inner">
+            <div class="carousel-item active" *ngFor="let pict of voyage?.picture">
+              <img src="{{pict.src}}" class="d-block w-100" alt="">
+            </div>
+
+
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+
+
+      <div class="container mt-5">
+        <div class="row">
+          <div class="col-md-8">
+            <img src="{{voyage?.mainPicture?.src}}" alt="{{voyage?.mainPicture?.alt}}"
+              class="border border-info-subtle img-fluid">
+          </div>
+
+          <div class="col-md-3 detailTexte">
+            <div>
+              <h2 class="fs-3">Voyage à la {{voyage?.type}}</h2>
+
+              <p class="fa-solid fa-star" style="color: #FFD43B;"> {{ voyage?.nbStar }}</p>
+            </div>
+            <div>
+              <ul>
+                <li>Latitude: {{ voyage?.lattitude }} </li>
+                <li>longitude: {{ voyage?.longitude }}</li>
+              </ul>
+            </div>
+            <iframe width="300" height="170" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+              src="https://maps.google.com/maps?q={{voyage?.longitude}},{{voyage?.lattitude}}&hl=fr&z=14&output=embed"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+</body>

@@ -1,0 +1,114 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-12">
+      <div>
+        <h1>Modifier {{voyForm.destination}}</h1>
+        <a [routerLink]="['/admin']" class="fst-italic text-dark">Retour</a>
+      </div>
+      <div *ngIf="isLoading" class="spinner-border" role="status">
+      </div>
+
+
+      <form *ngIf="!isLoading" (submit)="updateVoyage()" #formVoiture="ngForm">
+        <div class="form-row">
+          <div class="col-md-4 mb-3">
+            <label for="destination">Destination</label>
+            <input type="text" #destination="ngModel" [(ngModel)]="voyForm.destination" required class="form-control"
+              [class.is-valid]="destination.valid" [class.is-invalid]="!destination.valid" id="destination"
+              name="destination" placeholder="destination">
+            <div *ngIf="destination.valid" class="valid-feedback">
+              Saisi valide
+            </div>
+
+            <div *ngIf="!destination.valid" class="invalid-feedback">
+              Veuillez saisir la destination
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <div class="form-row">
+          <div class="col-md-4 mb-3">
+            <label for="lattitude">Lattitude</label>
+            <input type="number" #lattitude="ngModel" [(ngModel)]="voyForm.lattitude" required class="form-control"
+              [class.is-valid]="lattitude.valid" [class.is-invalid]="!lattitude.valid" id="lattitude" name="lattitude"
+              step="1" placeholder="lattitude">
+            <div *ngIf="lattitude.valid" class="valid-feedback">
+              Saisi valide
+            </div>
+
+            <div *ngIf="!lattitude.valid" class="invalid-feedback">
+              Veuillez saisir la lattitude
+            </div>
+          </div>
+
+
+          <div class="col-md-4 mb-3">
+            <label for="longitude">Longitude</label>
+            <input type="number" #longitude="ngModel" [(ngModel)]="voyForm.longitude" required class="form-control"
+              [class.is-valid]="longitude.valid" [class.is-invalid]="!longitude.valid" id="longitude" name="longitude"
+              step="1" placeholder="longitude">
+            <div *ngIf="longitude.valid" class="valid-feedback">
+              Saisi valide
+            </div>
+
+            <div *ngIf="!lattitude.valid" class="invalid-feedback">
+              Veuillez saisir la longitude
+            </div>
+          </div>
+        </div>
+
+
+        <div class="form-row">
+          <div class="col-md-4 mb-3">
+            <label for="nbStar">Nombre d'étoile</label>
+            <input type="number" #nbStar="ngModel" [(ngModel)]="voyForm.nbStar" required class="form-control"
+              [class.is-valid]="nbStar.valid" [class.is-invalid]="!nbStar.valid" id="nbStar" name="nbStar" step="1"
+              placeholder="nbStar">
+            <div *ngIf="nbStar.valid" class="valid-feedback">
+              Saisi valide
+            </div>
+
+            <div *ngIf="!nbStar.valid" class="invalid-feedback">
+              Veuillez saisir le nombre d'étoile
+            </div>
+          </div>
+        </div>
+
+
+        <div class="form-row">
+          <div class="col-md-4 mb-3">
+            <label for="mainPicture">Photo Principale</label>
+            <input type="text" #mainPicture="ngModel" [(ngModel)]="voyForm.mainPicture" class="form-control"
+              [class.is-valid]="mainPicture.valid" [class.is-invalid]="!mainPicture.valid" id="mainPicture"
+              name="mainPicture" placeholder="Image Principale du voyage">
+            <div *ngIf="mainPicture.valid" class="valid-feedback">
+              Saisi valide
+            </div>
+
+            <div *ngIf="!mainPicture.valid" class="invalid-feedback">
+              Veuillez saisir une photo
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-md-4 mb-3">
+            <label for="username">Types de destination</label>
+            <select required [(ngModel)]="voyForm.type" #marqueSelect="ngModel" [class.is-valid]="voyForm.type"
+              [class.is-invalid]="!voyForm.type || voyForm.type == 'null'" name="type" class="form-select"
+              aria-label="Default select example">
+              <option selected [value]="null">Selectionnez une marque</option>
+              <option *ngFor="let type of types" [value]="type">{{ type }}</option>
+            </select>
+          </div>
+        </div>
+
+        <button [disabled]="!formVoiture.valid" type="submit" class="btn btn-success">Valider</button>
+      </form>
+    </div>
+  </div>
+</div>
